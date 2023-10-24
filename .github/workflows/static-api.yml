@@ -1,21 +1,20 @@
-name: Serve Static Files
+name: Serve JSON Files
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main # Change this to your default branch
 
 jobs:
-  deploy-to-githib-page:
-
+  build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Code
-      uses: actions/checkout@v3
-    
-    - name: Deploy to Github Pages
-      uses: JamesIves/github-pages-deploy-action@3.7.1
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
       with:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        BRANCH: gh-pages
-        FOLDER: ./json
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./json_data # Directory containing your JSON files
