@@ -1,0 +1,21 @@
+name: Serve Static Files
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  deploy-to-githib-page:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+    
+    - name: Deploy to Github Pages
+      uses: JamesIves/github-pages-deploy-action@3.7.1
+      with:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        BRANCH: gh-pages
+        FOLDER: ./json
